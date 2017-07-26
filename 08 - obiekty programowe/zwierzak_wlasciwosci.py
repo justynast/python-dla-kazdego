@@ -18,41 +18,19 @@ class Critter(object):
             self.__name = new_name
             print("Zmiana imienia się powiodła")
 
-    def __pass_time(self):
-        self.hunger += 1
-        self.boredom += 1
-
-    def mood(self):
-        unhappiness = self.hunger + self.boredom
-        if unhappiness < 5:
-            m = "szczęśliwy"
-        elif 5 <= unhappiness <= 10:
-            m = "zadowolony"
-        elif 11 <= unhappiness <= 15:
-            m = "poddenerwowany"
-        else:
-            m = "wściekły"
-        return m
-
     def talk(self):
-        print("Nazywam się", self.name, "i jestem teraz", self.mood)
-        self.__pass_time()
+        print("Cześć! Nazywam się", self.name)
 
-    def eat(self, food = 4):
-        print("Om nom nom. Dzięki.")
-        self.hunger -= food
-        if self.hunger < 0:
-            self.hunger = 0
-        self.__pass_time()
+# część główna
+crit = Critter("Franek")
+crit.talk()
 
-    def play(self, fun = 4):
-        print("Juhu!")
-        self.boredom -= fun
-        if self.boredom < 0:
-            self.boredom = 0
-        self.__pass_time()
+print("\nImię mojego zwierzaka to:", crit.name)
+print("Próbuję zmienić imię mogego zwierzaka na Olek...")
+crit.name = "Olek"
+print("\nImię mojego zwierzaka to:", crit.name)
+print("Próbuję zmienić imię mogego zwierzaka na pusty łańcuch znaków...")
+crit.name = ""
+print("\nImię mojego zwierzaka to:", crit.name)
 
-    def main():
-        crit_name = input("Jak chcesz nazwać swojego zwierzaka? ")
-        crit = Critter(crit_name)
-
+input("\n\nAby zakończyć naciśnij klawisz enter")
