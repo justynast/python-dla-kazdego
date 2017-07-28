@@ -7,7 +7,7 @@ Wartości te powinny wpływać na szybkość spadku poziomu głodu i nudy u zwie
 
 class Critter(object):
     """ wirtualny pupil """
-    def __init__(self, name, hunger = 0, boredom = 0):
+    def __init__(self, name, hunger = 2, boredom = 2):
         self.name = name
         self.hunger = hunger
         self.boredom = boredom
@@ -34,19 +34,26 @@ class Critter(object):
         print("Nazywam się", self.name, "i jestem teraz", self.mood, "\n")
         self.__pass_time()
 
-    def eat(self, food = 4):
+    def eat(self, food):
+        print("Before:", self.hunger) #help
         print("Om nom nom. Dziękuję.")
         self.hunger -= food
         if self.hunger < 0:
             self.hunger = 0
+        print("After:", self.hunger)#help
         self.__pass_time()
+        print("After:", self.hunger)#help
 
-    def play(self, fun = 4):
+
+    def play(self, fun):
+        print("Before:", self.boredom)#help
         print("Juhu!")
         self.boredom -= fun
         if self.boredom < 0:
             self.boredom = 0
+        print("After:", self.boredom)#help
         self.__pass_time()
+        print("After:", self.boredom)#help
 
 
 def main():
@@ -77,11 +84,20 @@ def main():
 
         # nakarm zwierzaka
         elif choice == "2":
-            crit.eat()
+            food = 0
+            food = int(input("Jaką ilość jedzenia chcesz podać zwierzakowi?(1-5): "))
+            while food not in range(1,6):
+                print("Nieprawidłowy wybór.")
+                food = int(input("Jaką ilość jedzenia chcesz podać zwierzakowi?(1-5): "))
+            crit.eat(food)
 
         # pobaw się ze swoim zwierzakiem
         elif choice == "3":
-            crit.play()
+            fun = int(input("Jak długo chces bawić się ze zwierzakiem?(1-5): "))
+            while fun not in range(1,6):
+                print("Nieprawidłowy wybór.")
+                fun = int(input("Jak długo chces bawić się ze zwierzakiem?(1-5): "))
+            crit.play(fun)
 
         # nieznany wybór
         else:
