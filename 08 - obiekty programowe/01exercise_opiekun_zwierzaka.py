@@ -7,7 +7,7 @@ Wartości te powinny wpływać na szybkość spadku poziomu głodu i nudy u zwie
 
 class Critter(object):
     """ wirtualny pupil """
-    def __init__(self, name, hunger = 2, boredom = 2):
+    def __init__(self, name, hunger = 0, boredom = 0):
         self.name = name
         self.hunger = hunger
         self.boredom = boredom
