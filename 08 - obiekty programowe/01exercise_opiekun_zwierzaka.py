@@ -32,6 +32,8 @@ class Critter(object):
 
     def talk(self):
         print("Nazywam się", self.name, "i jestem teraz", self.mood, "\n")
+        print("Hunger:", self.hunger)#help
+        print("Boredom:", self.boredom)#help
         self.__pass_time()
 
     def eat(self, food):
@@ -84,7 +86,6 @@ def main():
 
         # nakarm zwierzaka
         elif choice == "2":
-            food = 0
             food = int(input("Jaką ilość jedzenia chcesz podać zwierzakowi?(1-5): "))
             while food not in range(1,6):
                 print("Nieprawidłowy wybór.")
