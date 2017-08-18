@@ -1,6 +1,7 @@
 # gra w karty
 # demonstruje tworzenie kombinacji obiektów
 
+
 class Card(object):
     """ Karta do gry """
     RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
@@ -14,12 +15,13 @@ class Card(object):
         rep = self.rank + self.suit
         return rep
 
+
 class Hand(object):
     """ Ręka - karty do gry w ręku gracza """
     def __init__(self):
         self.cards = []
 
-    def __str__:
+    def __str__(self):
         if self.cards:
             rep = ""
             for card in self.cards:
