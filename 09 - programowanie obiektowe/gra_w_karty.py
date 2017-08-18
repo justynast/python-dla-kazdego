@@ -41,3 +41,15 @@ class Hand(object):
         self.cards.remove(card)
         other_hand.add(card)
 
+# część główna
+card1 = Card(rank = "A", suit = "c")
+print("Wyświetlam obiekt karty (klasy Card):")
+print(card1)
+
+card2 = Card(rank = "2", suit = "c")
+card3 = Card(rank = "3", suit = "c")
+card4 = Card(rank = "4", suit = "c")
+card5 = Card(rank = "5", suit = "c")
+print("\nWyświetlam resztę obiektów:")
+print(card2, card3, card4, card5)
+
