@@ -12,7 +12,7 @@ class Critter(object):
         self.hunger = hunger
         self.boredom = boredom
 
-    def __pass_time(self):
+    def pass_time(self):
         self.hunger += 1
         self.boredom += 1
 
@@ -32,30 +32,18 @@ class Critter(object):
 
     def talk(self):
         print("Nazywam się", self.name, "i jestem teraz", self.mood, "\n")
-        print("Hunger:", self.hunger)#help
-        print("Boredom:", self.boredom)#help
-        self.__pass_time()
 
     def eat(self, food):
-        print("Before:", self.hunger) #help
         print("Om nom nom. Dziękuję.")
         self.hunger -= food
         if self.hunger < 0:
             self.hunger = 0
-        print("After:", self.hunger)#help
-        self.__pass_time()
-        print("After:", self.hunger)#help
-
 
     def play(self, fun):
-        print("Before:", self.boredom)#help
         print("Juhu!")
         self.boredom -= fun
         if self.boredom < 0:
             self.boredom = 0
-        print("After:", self.boredom)#help
-        self.__pass_time()
-        print("After:", self.boredom)#help
 
 
 def main():
@@ -83,6 +71,7 @@ def main():
         # słuchaj zwierzaka
         elif choice == "1":
             crit.talk()
+            crit.pass_time()
 
         # nakarm zwierzaka
         elif choice == "2":
@@ -91,6 +80,12 @@ def main():
                 print("Nieprawidłowy wybór.")
                 food = int(input("Jaką ilość jedzenia chcesz podać zwierzakowi?(1-5): "))
             crit.eat(food)
+            if food < 3:
+                crit.pass_time()
+                crit.pass_time()
+            else:
+                crit.pass_time()
+
 
         # pobaw się ze swoim zwierzakiem
         elif choice == "3":
@@ -99,6 +94,11 @@ def main():
                 print("Nieprawidłowy wybór.")
                 fun = int(input("Jak długo chces bawić się ze zwierzakiem?(1-5): "))
             crit.play(fun)
+            if fun < 3:
+                crit.pass_time()
+                crit.pass_time()
+            else:
+                crit.pass_time()
 
         # nieznany wybór
         else:
