@@ -12,6 +12,14 @@ class Critter(object):
         self.hunger = hunger
         self.boredom = boredom
 
+    def __str__(self):
+        obj = "Obiekt klasy Critter\n"
+        obj += "imię: " + self.name + "\n"
+        obj += "głód: " + str(self.hunger) + "\n"
+        obj += "znudzenie: " + str(self.boredom) + "\n"
+        obj += "humor: " + self.mood + "\n"
+        return obj
+
     def pass_time(self):
         self.hunger += 1
         self.boredom += 1
@@ -99,6 +107,9 @@ def main():
                 crit.pass_time()
             else:
                 crit.pass_time()
+
+        elif choice == "4": #ukryta wartość
+            print(crit)
 
         # nieznany wybór
         else:
