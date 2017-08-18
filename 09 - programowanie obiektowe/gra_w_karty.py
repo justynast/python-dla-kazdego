@@ -53,3 +53,31 @@ card5 = Card(rank = "5", suit = "c")
 print("\nWyświetlam resztę obiektów:")
 print(card2, card3, card4, card5)
 
+my_hand = Hand()
+print("\nWyświetlam zawartość ręki przed dodaniem jakichkolwiek kart:")
+print(my_hand)
+
+my_hand.add(card1)
+my_hand.add(card2)
+my_hand.add(card3)
+my_hand.add(card4)
+my_hand.add(card5)
+
+print("\nWyświetlam zawartość ręki po dodaniu 5 kart:")
+print(my_hand)
+
+your_hand = Hand()
+my_hand.give(card1, your_hand)
+my_hand.give(card2, your_hand)
+print("\nPrzekazuję pierwsze dwie karty z mojej ręki do Twojej.")
+print("Twoja ręka:")
+print(your_hand)
+print("Moja ręka:")
+print(my_hand)
+
+my_hand.clear()
+print("\nMoja ręka po usunięciu z niej kart:")
+print(my_hand)
+
+input("\n\nAby zakończyć naciśnij klawisz Enter")
+
