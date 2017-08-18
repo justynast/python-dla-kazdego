@@ -60,3 +60,39 @@ class Deck(Hand):
                     self.give(top_card, hand)
                 else:
                     print("Nie mogę dalej rozdawać. Zabrakło kart!")
+
+# część główna
+deck1 = Deck()
+print("Utworzyłem nową talię.")
+print("Talia:")
+print(deck1)
+
+deck1.populate()
+print("\nDodałem do talii komplet kart.")
+print("Talia:")
+print(deck1)
+
+deck1.shuffle()
+print("\nPotasowałem talię kart.")
+print("Talia:")
+print(deck1)
+
+my_hand = Hand()
+your_hand = Hand()
+hands = [my_hand, your_hand]
+
+deck1.deal(hands, per_hand = 5)
+
+print("\nRozdałem sobie i Tobie po 5 kart.")
+print("Moja ręka:")
+print(my_hand)
+print("Twoja ręka:")
+print(your_hand)
+print("Talia:")
+print(deck1)
+
+deck1.clear()
+print("\nUsunąłem zawartość talii.")
+print("Talia:", deck1)
+
+input("Aby zakończyć naciśnij klawisz Enter")
