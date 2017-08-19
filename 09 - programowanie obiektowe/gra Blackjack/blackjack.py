@@ -3,6 +3,7 @@
 
 import karty, gry
 
+
 class BJ_Card(karty.Card):
     """ karta do blackjacka """
     ACE_VALUE = 1
@@ -16,3 +17,11 @@ class BJ_Card(karty.Card):
         else:
             v = None
         return v
+
+
+class BJ_Deck(karty.Deck):
+    """ talia kart do blackjacka """
+    def populate(self):
+        for suit in BJ_Card.SUITS:
+            for rank in BJ_Card.RANKS:
+                self.cards.append(BJ_Card(rank, suit))
