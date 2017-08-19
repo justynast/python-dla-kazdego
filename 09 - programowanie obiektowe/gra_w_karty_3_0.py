@@ -14,3 +14,10 @@ class Card(object):
     def __str__(self):
         rep = self.rank + self.suit
         return rep
+
+
+class Unprintable_Card(Card):
+    """ karta, której ranga i kolor nie są ujawniane przy jej wyświetleniu """
+    def __str__(self):
+        return "<utajniona>"
+
