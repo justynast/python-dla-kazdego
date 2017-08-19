@@ -21,3 +21,19 @@ class Unprintable_Card(Card):
     def __str__(self):
         return "<utajniona>"
 
+
+class Positionable_Card(Card):
+    """ karta, która może być odkryta lub zakryta """
+    def __init__(self, rank, suit, face_up = True):
+        super(Positionable_Card, self).__init__(rank, suit)
+        self.is_face_up = face_up
+
+    def __str__(self):
+        if self.is_face_up:
+            rep = super(Positionable_Card, self).__str__()
+        else:
+            rep = "XX"
+        return rep
+
+    def flip(self):
+        self.is_face_up = not self.is_face_up
