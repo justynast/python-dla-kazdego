@@ -68,3 +68,7 @@ class Deck(Hand):
                     self.give(top_card, hand)
                 else:
                     print("Nie mogę dalej rozdawać. Zabrakło kart!")
+
+if __name__ == "__main__":
+    print("To moduł zawierający klasy do gry w karty.")
+    input("\n\nAby zakończyć program, naciśnij klawisz Enter")
