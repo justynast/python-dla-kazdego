@@ -114,3 +114,21 @@ class BJ_Game(object):
         self.deck = BJ_Deck()
         self.deck.populate()
         self.deck.shuffle()
+
+    @property
+    def still_playing(self):
+        sp = []
+        for player in self.players:
+            if not player.is_busted():
+                sp.append(player)
+
+        return sp
+
+    def __additional_cards(self, player):
+        while not player.is_busted() and player.is_hitting():
+            self.deck.deal([player])
+            print(player)
+            if player.is_busted():
+                player.bust()
+
+
