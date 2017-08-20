@@ -185,12 +185,12 @@ def main():
         names.append(name)
     print()
 
-    game = BJ_Game()
+    game = BJ_Game(names)
 
     again = None
     while again != "n":
         game.play()
-        again = gry.ask_yes_no("\n Czy chcesz zagrać ponownie?: ")
+        again = gry.ask_yes_no("\nCzy chcesz zagrać ponownie?: ")
 
 main()
 input("\n\nAby zakończyć naciśnij Enter.")
