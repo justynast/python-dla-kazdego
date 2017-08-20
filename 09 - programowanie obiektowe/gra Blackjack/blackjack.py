@@ -173,3 +173,24 @@ class BJ_Game(object):
         for player in self.players:
             player.clear()
         self.dealer.clear()
+
+def main():
+    print("Witaj w grze 'Blackjack'")
+
+    names = []
+    number = gry.ask_number("Podaj liczbę graczy (1-7): ", low = 1, high = 8)
+
+    for i in range(number):
+        name = input("Wprowadź nazwę gracza: ")
+        names.append(name)
+    print()
+
+    game = BJ_Game()
+
+    again = None
+    while again != "n":
+        game.play()
+        again = gry.ask_yes_no("\n Czy chcesz zagrać ponownie?: ")
+
+main()
+input("\n\nAby zakończyć naciśnij Enter.")
