@@ -67,3 +67,37 @@ class BJ_Hand(karty.Hand):
     def is_busted(self):
         return self.total > 21
 
+
+class BJ_Player(BJ_Hand):
+    """ gracz w blackjacku """
+    def is_hitting(self):
+        response = gry.ask_yes_no("\n" + self.name + ", chcesz dobrać kartę? (T/N): ")
+        return response == "t"
+
+    def bust(self):
+        print(self.name, "ma furę.")
+        self.lose()
+
+    def lose(self):
+        print(self.name, "przegrywa")
+
+    def win(self):
+        print(self.name, "wygrywa")
+
+    def push(self):
+        print(self.name, "remisuje")
+
+
+class BJ_Dealer(BJ_Hand):
+    """ rozdający w blackjacku """
+    def is_hitting(self):
+        return self.total < 17
+
+    def bust(self):
+        print(self.name, "ma furę")
+
+    def flip_first_card(self):
+        first_card = self.cards[0]
+        first_card.flip()
+
+
