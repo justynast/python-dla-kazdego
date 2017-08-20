@@ -101,3 +101,16 @@ class BJ_Dealer(BJ_Hand):
         first_card.flip()
 
 
+class BJ_Game(object):
+    """ gra w blackjacka """
+    def __init__(self, names):
+        self.players = []
+        for name in names:
+            player = BJ_Player(name)
+            self.players.append(player)
+
+        self.dealer = BJ_Dealer("Rozdający")
+
+        self.deck = BJ_Deck()
+        self.deck.populate()
+        self.deck.shuffle()
