@@ -11,3 +11,18 @@ class Application(Frame):
         self.grid()
         self.create_widgets()
 
+    def create_widgets(self):
+        """ Utwórz trzy przyciski, które nic nie robią """
+        # utwórz pierwszy przycisk
+        self.bttn1 = Button(self, text = "Nic nie robię!")
+        self.bttn1.grid()
+
+        # utwórz drugi przycisk
+        self.bttn2 = Button(self)
+        self.bttn2.grid()
+        self.bttn2.configure(text = "Ja również.")
+
+        #utwórz trzeci przycisk
+        self.bttn3 = Button(self)
+        self.bttn3.grid()
+        self.bttn3["text"] = "Takoż i ja."
