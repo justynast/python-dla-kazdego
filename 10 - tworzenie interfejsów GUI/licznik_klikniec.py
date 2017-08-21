@@ -23,3 +23,12 @@ class Application(Frame):
         """ zwiększ licznik kliknięć i wyświetl jego nową wartość """
         self.bttn_clicks += 1
         self.bttn["text"] = "Liczba kliknięć: " + str(self.bttn_clicks)
+
+# część główna
+root = Tk()
+root.title("Licznik klinięć")
+root.geometry("200x50")
+
+app = Application(root)
+
+root.mainloop()
