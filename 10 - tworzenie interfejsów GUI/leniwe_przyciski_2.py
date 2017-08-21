@@ -26,3 +26,13 @@ class Application(Frame):
         self.bttn3 = Button(self)
         self.bttn3.grid()
         self.bttn3["text"] = "Takoż i ja."
+
+
+# część główna
+root = Tk()
+root.title("Leniwe przyciski 2")
+root.geometry("210x85")
+
+app = Application(root)
+
+root.mainloop()
