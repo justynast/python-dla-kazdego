@@ -25,3 +25,6 @@ bttn2.configure(text = "Ja również.")
 bttn3 = Button(app)
 bttn3.grid()
 bttn3["text"] = "Takoż i ja."
+
+# uruchom pętlę zdarzeń
+root.mainloop()
