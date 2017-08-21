@@ -9,3 +9,6 @@ root = Tk()
 # zmodyfikuj okno
 root.title("Prosty interfejs GUI")
 root.geometry("225x100")
+
+# uruchom pętlę zdarzeń
+root.mainloop()
