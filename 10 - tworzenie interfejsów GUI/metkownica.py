@@ -15,3 +15,6 @@ app.grid()
 # utwórz w ramce etykietę
 lbl = Label(app, text = "Jestem etykietą.")
 lbl.grid()
+
+# uruchom pętlę zdarzeń okna
+root.mainloop()
