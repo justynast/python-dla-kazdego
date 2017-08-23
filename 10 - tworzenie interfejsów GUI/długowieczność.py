@@ -33,3 +33,16 @@ class Application(Frame):
         self.secret_txt = Text(self, width = 35, height = 5, wrap = WORD)
         self.secret_txt.grid(row = 3, column = 0, columnspan = 2, sticky = W)
 
+    def reveal(self):
+        """ wyświetl komunikat zależny od poprawności hasła """
+        contents = self.pw_ent.get()
+
+        if contents == "sekret":
+            message = "Oto tajemny przepis na dożycie 100 lat: dożyj 99 lat, a potem bądź BARDZO ostrożny."
+
+        else:
+            message = "To nie jest poprawne hasło, więc nie mogę się z Tobą podzielić swoim sekretem."
+
+        self.secret_txt.delete(0.0, END)
+        self.secret_txt.insert(0.0, message)
+
