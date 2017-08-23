@@ -46,3 +46,11 @@ class Application(Frame):
         self.secret_txt.delete(0.0, END)
         self.secret_txt.insert(0.0, message)
 
+# część główna
+root = Tk()
+root.title("Długowieczność")
+root.geometry("300x150")
+
+app = Application(root)
+
+root.mainloop()
