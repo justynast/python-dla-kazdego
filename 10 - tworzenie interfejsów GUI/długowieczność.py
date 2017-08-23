@@ -29,3 +29,7 @@ class Application(Frame):
         self.submit_bttn = Button(self, text = "Akceptuj", command = self.reveal)
         self.submit_bttn.grid(row = 2, column = 0, sticky = W)
 
+        # utwórz widżet Text do wyświetlenia komunikatu
+        self.secret_txt = Text(self, width = 35, height = 5, wrap = WORD)
+        self.secret_txt.grid(row = 3, column = 0, columnspan = 2, sticky = W)
+
