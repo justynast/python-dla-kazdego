@@ -42,3 +42,18 @@ class Application(Frame):
         # utwórz pole tekstowe do wyświetlenia wyników
         self.results_txt = Text(self, width = 40, height = 5, wrap = WORD)
         self.results_txt.grid(row = 5, column = 0, columnspan = 3)
+
+    def update_text(self):
+        """ zaktualizuj pole tekstowe i wyświetl ulubione gatunki użytkownika """
+
+        if self.likes_comedy.get():
+            likes += "Lubisz filmy komediowe.\n"
+
+        if self.likes_drama.get():
+            likes += "Lubisz dramaty filmowe.\n"
+
+        if self.likes_romance.get():
+            likes += "Lubisz filmy romantyczne.\n"
+
+        self.results_txt.delete(0.0, END)
+        self.results_txt.insert(0.0, likes)
