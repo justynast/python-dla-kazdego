@@ -46,6 +46,8 @@ class Application(Frame):
     def update_text(self):
         """ zaktualizuj pole tekstowe i wyświetl ulubione gatunki użytkownika """
 
+        likes = ""
+
         if self.likes_comedy.get():
             likes += "Lubisz filmy komediowe.\n"
 
