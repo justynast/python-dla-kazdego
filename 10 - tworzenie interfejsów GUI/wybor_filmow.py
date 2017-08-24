@@ -57,3 +57,9 @@ class Application(Frame):
 
         self.results_txt.delete(0.0, END)
         self.results_txt.insert(0.0, likes)
+
+# część główna
+root = Tk()
+root.title("Wybór filmów")
+app = Application(root)
+root.mainloop()
