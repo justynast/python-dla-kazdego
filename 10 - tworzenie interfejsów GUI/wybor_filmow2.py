@@ -61,3 +61,10 @@ class Application(Frame):
         message += self.favorite.get()
         self.results_txt.delete(0.0, END)
         self.results_txt.insert(0.0, message)
+
+
+# część główna
+root = Tk()
+root.title("Wybór filmów 2")
+app = Application(root)
+root.mainloop()
