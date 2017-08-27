@@ -140,3 +140,8 @@ class Application(Frame):
 
 
 
+# główna część programu
+root = Tk()
+root.title("Mad Lib")
+app = Application(root)
+root.mainloop()
