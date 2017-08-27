@@ -29,3 +29,70 @@ class Application(Frame):
               ).grid(row = 1, column = 1, sticky = W)
         self.person_ent = Entry(self)
         self.person_ent.grid(row = 1, column = 1, sticky = W)
+
+        # utwórz etykietę i pole znakowe do wpisania rzeczownika w liczbie mnogiej
+        Label(self,
+              text = "Rzeczownik w liczbie mnogiej:"
+              ).grid(row = 2, column = 0, sticky = W)
+        self.noun_ent = Entry(self)
+        self.noun_ent.grid(row = 2, column = 1, sticky = W)
+
+        # utwórz etykietę i pole znakowe do wpisania czasownika
+        self.verb_ent = Entry(self)
+        self.verb_ent.grid(row = 3, column = 1, sticky = W)
+
+        # utwórz etykietę do pól wyboru przymiotników
+        Label(self,
+              text = "Przymiotnik(i):"
+              ).grid(row = 4, column = 0, sticky = W)
+
+        # utwórz pola wyboru przymiotników
+        self.is_itchy = BooleanVar()
+        Checkbutton(self,
+                    text = "naglące",
+                    variable = self.is_itchy
+                    ).grid(row = 4, column = 1, sticky = W)
+
+        self.is_joyous = BooleanVar()
+        Checkbutton(self,
+                    text = "radosne",
+                    variable = self.is_joyous
+                    ).grid(row = 4, column = 2, sticky = W)
+
+        self.is_electric = BooleanVar()
+        Checkbutton(self,
+                    text = "elektryzujące",
+                    variable = self.is_electric
+                    ).grid(row = 4, column = 3, sticky = W)
+
+        # utwórz etykietę do przycisków opcji odnoszących się do części ciała
+        Label(self,
+              text = "Część ciała:"
+              ).grid(row = 5, column = 0, sticky = W)
+
+        # utwórz zmieną na pojedynczą część ciała
+        self.body_part = StringVar()
+        self.body_part.set(None)
+
+        # utwórz przyciski opcji odnoszące się do części ciała
+        body_parts = ["pępek", "duży palec u nogi", "rdzeń przedłużony"]
+        column = 1
+        for part in body_parts:
+            Radiobutton(self,
+                        text = part,
+                        variable = self.body_part,
+                        value = part
+                        ).grid(row = 5, column = column, sticky = W)
+            column += 1
+
+        # utwórz przycisk akceptacji danych
+        Button(self,
+               text = "Kliknij aby wyświetlić opowiadanie",
+               command = self.tell_story
+               ).grid(row = 6, column = 0, sticky = W)
+
+        self.story_txt = Text(self, width = 75, height = 10, wrap = WORD)
+        self.story_txt.grid(row = 7, column = 0, columnspan = 4)
+
+
+
