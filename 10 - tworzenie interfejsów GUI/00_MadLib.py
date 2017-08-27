@@ -95,4 +95,48 @@ class Application(Frame):
         self.story_txt.grid(row = 7, column = 0, columnspan = 4)
 
 
+    def tell_story(self):
+        """
+        Wpisz w pole tekstowe nowe opowiadanie
+        oparte na danych użytkownika.
+        """
+        # pobierz wartości z interfejsu GUI
+        person = self.person_ent.get()
+        noun = self.noun_ent.get()
+        verb = self.verb_ent.get()
+        adjectives = ""
+        if self.is_itchy.get():
+            adjectives += "naglące,"
+        if self.is_joyous.get():
+            adjectives += "radosne,"
+        if self.is_electric.get():
+            adjectives += "elektryzujące,"
+        body_part = self.body_part.get()
+
+        # utwórz historię
+        story = "Sławny badacz i odkrywca "
+        story += person
+        story += " o mało co nie zrezygnował z poszukiwania zaginionego miasta," \
+                 "które zamieszkiwały "
+        story += noun
+        story += ", gdy pewnego dnia "
+        story += noun
+        story += " znalazły "
+        story += person + "a. "
+        story += "Silne, " + adjectives
+        story += " osobliwe uczucie owładnęło badaczem. Po tak długim czasie poszukiwanie wreszcie się zakończyło. " \
+                 "W oku "
+        story += person + "a pojawiła się łza, która spadła na jego "
+        story += body_part + ". "
+        story += "A wtedy " + noun + " szybko pożarły "
+        story += person + "a. "
+        story += "Jaki morał płynie z opowiadania? Pomyśl, zanim zaczniesz coś "
+        story += verb + "."
+
+        # wyświetl opowiadanie
+
+        self.story_txt.delete(0.0, END)
+        self.story_txt.insert(0.0, story)
+
+
 
