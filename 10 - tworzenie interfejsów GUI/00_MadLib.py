@@ -26,7 +26,7 @@ class Application(Frame):
         # utwórz etykietę i pole znakowe służące do wpisania imienia osoby
         Label(self,
               text = "Osoba: "
-              ).grid(row = 1, column = 1, sticky = W)
+              ).grid(row = 1, column = 0, sticky = W)
         self.person_ent = Entry(self)
         self.person_ent.grid(row = 1, column = 1, sticky = W)
 
@@ -38,6 +38,9 @@ class Application(Frame):
         self.noun_ent.grid(row = 2, column = 1, sticky = W)
 
         # utwórz etykietę i pole znakowe do wpisania czasownika
+        Label(self,
+              text = "Czasownik:"
+              ).grid(row = 3, column = 0, sticky = W)
         self.verb_ent = Entry(self)
         self.verb_ent.grid(row = 3, column = 1, sticky = W)
 
@@ -117,7 +120,7 @@ class Application(Frame):
         story = "Sławny badacz i odkrywca "
         story += person
         story += " o mało co nie zrezygnował z poszukiwania zaginionego miasta," \
-                 "które zamieszkiwały "
+                 " które zamieszkiwały "
         story += noun
         story += ", gdy pewnego dnia "
         story += noun
