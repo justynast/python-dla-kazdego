@@ -50,12 +50,9 @@ class Application(Frame):
                command = self.calculateTotal
                ).grid(row = 5, column = 1, sticky = W)
 
-        # utwórz ramkę do prezentacji danych
-        self.txtFrame = Text(self,
-                             width = 20,
-                             height = 2,
-                             wrap = WORD
-                             ).grid(row = 6, column = 0, columnspan = 2, sticky = W)
+        # utwórz pole tekstowe do wyświetlenia wyników
+        self.results_txt = Text(self, width = 15, height = 3, wrap = WORD)
+        self.results_txt.grid(row = 6, column = 0, sticky = W)
 
     def calculateTotal(self):
         """ oblicz rachunek na podstawie uzyskanych danych """
@@ -80,8 +77,8 @@ class Application(Frame):
             txt += " PLN."
 
         # wyświetl dane
-        self.txtFrame.delete(0.0, END)
-        self.txtFrame.insert(0.0, txt)
+        self.results_txt.delete(0.0, END)
+        self.results_txt.insert(0.0, txt)
 
 
 # główna część programu
