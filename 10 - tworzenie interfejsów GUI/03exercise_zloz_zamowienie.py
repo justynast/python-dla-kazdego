@@ -84,4 +84,8 @@ class Application(Frame):
         self.txtFrame.insert(0.0, txt)
 
 
-
+# główna część programu
+root = Tk()
+root.title("Złóż zamówienie")
+app = Application(root)
+root.mainloop()
