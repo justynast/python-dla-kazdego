@@ -47,14 +47,18 @@ class Application(Frame):
         bill = self.bill.get()
         tip = self.tip.get()
 
+        message = ""
+
         try:
             bill = int(bill)
             total = bill + bill * tip/100
 
-            message = "Twój rachunek z napiwkiem wynosi: " + str(total) + "."
+            message += "Twój rachunek z napiwkiem wynosi: "
+            message += str(total)
+            message += "."
 
         except:
-            "Wystąpił błąd. Spróbuj jeszcze raz."
+            message = "Wystąpił błąd. Spróbuj jeszcze raz."
 
 
         self.results_txt.delete(0.0, END)
