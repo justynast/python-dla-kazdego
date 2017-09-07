@@ -51,6 +51,10 @@ class Application(Frame):
 
         try:
             bill = int(bill)
+
+            if int(bill) <= 0:
+                message = "Wprowadź kwotę, która jest liczbą dodatnią!"
+
             total = bill + bill * tip/100
 
             message += "Twój rachunek z napiwkiem wynosi: "
