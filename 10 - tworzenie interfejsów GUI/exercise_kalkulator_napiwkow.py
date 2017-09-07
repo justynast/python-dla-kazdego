@@ -65,6 +65,6 @@ class Application(Frame):
 
 # główna część programu
 root = Tk()
-root.title("Jaka to liczba?")
+root.title("Kalkulator napiwków")
 app = Application(root)
 root.mainloop()
