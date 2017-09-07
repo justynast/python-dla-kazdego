@@ -48,10 +48,10 @@ class Application(Frame):
         Button(self,
                text = "Oblicz rachunek",
                command = self.calculateTotal
-               ).grid(row = 5, column = 1, sticky = W)
+               ).grid(row = 5, column = 0, sticky = W)
 
         # utwórz pole tekstowe do wyświetlenia wyników
-        self.results_txt = Text(self, width = 15, height = 3, wrap = WORD)
+        self.results_txt = Text(self, width = 20, height = 3, wrap = WORD)
         self.results_txt.grid(row = 6, column = 0, sticky = W)
 
     def calculateTotal(self):
