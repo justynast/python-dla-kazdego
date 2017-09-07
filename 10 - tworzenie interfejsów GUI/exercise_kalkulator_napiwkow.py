@@ -40,8 +40,8 @@ class Application(Frame):
                     ).grid(row = 2, column = 1, sticky = W)
 
         # utwórz pole tekstowe do wyświetlenia wyników
-        self.results_txt = Text(self, width = 15, height = 3, wrap = WORD)
-        self.results_txt.grid(row = 3, column = 0, sticky = W)
+        self.results_txt = Text(self, width = 30, height = 3, wrap = WORD)
+        self.results_txt.grid(row = 3, column = 0, columnspan = 2, sticky = W)
 
     def update_txt(self):
         bill = self.bill.get()
@@ -55,11 +55,12 @@ class Application(Frame):
             if int(bill) <= 0:
                 message = "Wprowadź kwotę, która jest liczbą dodatnią!"
 
-            total = bill + bill * tip/100
+            else:
+                total = bill + bill * tip/100
 
-            message += "Twój rachunek z napiwkiem wynosi: "
-            message += str(total)
-            message += "."
+                message += "Twój rachunek z napiwkiem wynosi: "
+                message += str(total)
+                message += "."
 
         except:
             message = "Wystąpił błąd. Spróbuj jeszcze raz."
