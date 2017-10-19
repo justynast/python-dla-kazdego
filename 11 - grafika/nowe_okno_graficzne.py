@@ -9,7 +9,12 @@ wall_image = games.load_image("kote.jpg", transparent=False)
 games.screen.background = wall_image
 
 heart_image = games.load_image("heart.gif")
-heart = games.Sprite(image=heart_image, x=520, y=140)
+heart = games.Sprite(image=heart_image,
+                     x=games.screen.width/2,
+                     y=games.screen.height/2,
+                     dx=1,
+                     dy=1)
+
 games.screen.add(heart)
 
 
