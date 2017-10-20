@@ -33,7 +33,7 @@ class Bed(games.Sprite):
         self.check_catch()
 
     def check_catch(self):
-        """ Sprawdź, czy nie zostały złapane jakieś pizze. """
+        """ Sprawdź, czy nie zostały złapane jakieś kotki. """
         for kitten in self.overlapping_sprites:
             self.score.value += 10
             self.score.right = games.screen.width - 10
