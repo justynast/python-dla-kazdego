@@ -55,7 +55,7 @@ class Kitten(games.Sprite):
                                     dy = Kitten.speed)
 
     def update(self):
-        """ Sprawdź, czy dolny brzeg pizzy dosięgnął dołu ekranu. """
+        """ Sprawdź, czy kotek dosięgnął dołu ekranu. """
         if self.bottom > games.screen.height:
             self.end_game()
             self.destroy()
@@ -102,7 +102,7 @@ class Neil(games.Sprite):
 
 
     def check_drop(self):
-        """ Zmniejsz licznik odliczający czas lub zrzuć pizzę i zresetuj odliczanie. """
+        """ Zmniejsz licznik odliczający czas lub zrzuć kotka i zresetuj odliczanie. """
         if self.time_til_drop > 0:
             self.time_til_drop -= 1
         else:
