@@ -4,6 +4,7 @@ from livewires import games, color
 import random
 
 games.init(screen_width = 800, screen_height = 600, fps = 50)
+meow_sound = games.load_sound("meow.wav")
 
 class Bed(games.Sprite):
     """ łóżko sterowane myszką gracza służące do łapania spadających kotów"""
@@ -37,6 +38,7 @@ class Bed(games.Sprite):
             self.score.value += 10
             self.score.right = games.screen.width - 10
             kitten.handle_caught()
+            meow_sound.play()
 
 
 class Kitten(games.Sprite):
