@@ -109,7 +109,7 @@ class Neil(games.Sprite):
             new_kitten = Kitten(x = self.x)
             games.screen.add(new_kitten)
 
-            # ustaw margines na mniej więcej 30% wysokości pizzy, niezależnie od prędkości pizzy
+            # ustaw margines na mniej więcej 30% wysokości kotka, niezależnie od prędkości kotka
             self.time_til_drop = int(new_kitten.height * 1.3 / Kitten.speed) + 1
 
 
