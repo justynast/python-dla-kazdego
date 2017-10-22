@@ -20,6 +20,22 @@ class Bed(games.Sprite):
                                 top = 5, right = games.screen.width - 10)
         games.screen.add(self.score)
 
+    def lvlUp(self):
+
+        if self.score.value == 100:
+            Kitten.speed_up(Kitten)
+
+            level_message = games.Message(value = "Poziom 2",
+                                          size = 40,
+                                          color = color.pink,
+                                          x = games.screen.width/2,
+                                          y = games.screen.width/10,
+                                          lifetime = 1 * games.screen.fps,
+                                          is_collideable = False)
+
+            games.screen.add(level_message)
+
+
     def update(self):
         """ Zmień pozycję na wyznaczoną przez współrzędną x myszy. """
         self.x = games.mouse.x
@@ -31,6 +47,7 @@ class Bed(games.Sprite):
             self.right = games.screen.width
 
         self.check_catch()
+        self.lvlUp()
 
     def check_catch(self):
         """ Sprawdź, czy nie zostały złapane jakieś kotki. """
@@ -63,6 +80,9 @@ class Kitten(games.Sprite):
     def handle_caught(self):
         """ Destroy self if caught. """
         self.destroy()
+
+    def speed_up(self):
+        self.speed = 2
 
     def end_game(self):
         """ Zakończ grę. """
