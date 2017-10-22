@@ -25,6 +25,8 @@ class Skeleton(games.Sprite):
         if self.right > games.screen.width:
             self.right = games.screen.width
 
+        self.check_catch()
+
     def check_catch(self):
         for remains in self.overlapping_sprites:
             remains.handle_caught()
