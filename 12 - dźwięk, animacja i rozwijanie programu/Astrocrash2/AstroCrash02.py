@@ -1,5 +1,7 @@
-# Astrocrash08
-# Dodaj obiekt klasy Game w celu uzupełnienia programu
+# Astrocrash2
+# Ulepsz grę Astrocrash poprzez utworzenie nowego rodzaju śmiercionośnego gruzu kosmicznego
+# Nadaj nowemu typowi pewną cechę, która odróżni je od asteroid.
+# Np. zniszczenie takiego obiektu może wymagać dwóch uderzeń pocisku.
 
 import math, random
 from livewires import games, color
@@ -10,7 +12,7 @@ games.init(screen_width = 640, screen_height = 480, fps = 50)
 class Wrapper(games.Sprite):
     """ Duszek, którego tor lotu owija się wokół ekranu. """
     def update(self):
-        """ Przenieś duszka na przeciwległy brzeg ekranu. """    
+        """ Przenieś duszka na przeciwległy brzeg ekranu. """
         if self.top > games.screen.height:
             self.bottom = 0
 
@@ -19,7 +21,7 @@ class Wrapper(games.Sprite):
 
         if self.left > games.screen.width:
             self.right = 0
-            
+
         if self.right < 0:
             self.left = games.screen.width
 
@@ -33,11 +35,11 @@ class Collider(Wrapper):
     def update(self):
         """ Sprawdź, czy duszki nie zachodzą na siebie. """
         super(Collider, self).update()
-        
+
         if self.overlapping_sprites:
             for sprite in self.overlapping_sprites:
                 sprite.die()
-            self.die()               
+            self.die()
 
     def die(self):
         """ Zniszcz się i pozostaw po sobie eksplozję. """
@@ -58,17 +60,17 @@ class Asteroid(Wrapper):
     SPEED = 2
     SPAWN = 2
     POINTS = 30
-    
+
     total =  0
-      
+
     def __init__(self, game, x, y, size):
         """ Inicjalizuj duszka asteroidy. """
         Asteroid.total += 1
-        
+
         super(Asteroid, self).__init__(
             image = Asteroid.images[size],
             x = x, y = y,
-            dx = random.choice([1, -1]) * Asteroid.SPEED * random.random()/size, 
+            dx = random.choice([1, -1]) * Asteroid.SPEED * random.random()/size,
             dy = random.choice([1, -1]) * Asteroid.SPEED * random.random()/size)
 
         self.game = game
@@ -79,8 +81,8 @@ class Asteroid(Wrapper):
         Asteroid.total -= 1
 
         self.game.score.value += int(Asteroid.POINTS / self.size)
-        self.game.score.right = games.screen.width - 10   
-        
+        self.game.score.right = games.screen.width - 10
+
         # jeśli nie jest to mała asteroida, zastąp ją dwoma mniejszymi
         if self.size != Asteroid.SMALL:
             for i in range(Asteroid.SPAWN):
@@ -90,11 +92,64 @@ class Asteroid(Wrapper):
                                         size = self.size - 1)
                 games.screen.add(new_asteroid)
 
-        # jeśli wszystkie asteroidy zostały zniszczone, przejdź do następnego poziomu    
+        # jeśli wszystkie asteroidy zostały zniszczone, przejdź do następnego poziomu
         if Asteroid.total == 0:
             self.game.advance()
 
         super(Asteroid, self).die()
+
+class Alien(Wrapper):
+    """ Asteroida przelatująca przez ekran. """
+    SMALL = 1
+    MEDIUM = 2
+    LARGE = 3
+    images = {SMALL  : games.load_image("alien2.png"),
+              MEDIUM : games.load_image("alien.png"),
+              LARGE  : games.load_image("alien.png") }
+
+    SPEED = 0.2
+    SPAWN = 1
+    POINTS = 10
+
+    total = 0
+
+    def __init__(self, game, x, y, size):
+        """ Inicjalizuj duszka asteroidy. """
+        Alien.total += 1
+
+        super(Alien, self).__init__(
+            image = Alien.images[size],
+            x = x, y = y,
+            dx = random.choice([1, -1]) * Alien.SPEED * size,
+            dy = random.choice([1, -1]) * Alien.SPEED * size)
+
+        self.game = game
+        self.size = size
+
+    def die(self):
+        """ Zniszcz asteroidę. """
+        Alien.total -= 1
+
+        self.game.score.value += int(Alien.POINTS / self.size)
+        self.game.score.right = games.screen.width - 10
+
+        # jeśli nie jest to mała asteroida, zastąp ją dwoma mniejszymi
+        if self.size != Alien.SMALL:
+            for i in range(Alien.SPAWN):
+                new_Alien = Alien(game = self.game,
+                                        x = self.x,
+                                        y = self.y,
+                                        size = self.size - 1)
+                games.screen.add(new_Alien)
+
+        # jeśli wszystkie asteroidy zostały zniszczone, przejdź do następnego poziomu
+        if Alien.total == 0:
+            self.game.advance()
+
+        super(Alien, self).die()
+
+
+
 
 
 class Ship(Collider):
@@ -115,17 +170,17 @@ class Ship(Collider):
     def update(self):
         """ Obracaj statek, przyśpieszaj i wystrzeliwuj pociski, zależnie od naciśniętych klawiszy. """
         super(Ship, self).update()
-        
+
         # obróć statek zależnie od naciśniętych klawiszy strzałek (w prawo lub w lewo)
         if games.keyboard.is_pressed(games.K_LEFT):
             self.angle -= Ship.ROTATION_STEP
         if games.keyboard.is_pressed(games.K_RIGHT):
             self.angle += Ship.ROTATION_STEP
 
-        # zastosuj siłę ciągu przy naciśniętym klawiszu strzałki w górę        
+        # zastosuj siłę ciągu przy naciśniętym klawiszu strzałki w górę
         if games.keyboard.is_pressed(games.K_UP):
             Ship.sound.play()
-            
+
             # zmień składowe prędkości w zależności od kąta położenia statku
             angle = self.angle * math.pi / 180  # zamień na radiany
             self.dx += Ship.VELOCITY_STEP * math.sin(angle)
@@ -134,17 +189,17 @@ class Ship(Collider):
             # ogranicz prędkość w każdym kierunku
             self.dx = min(max(self.dx, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
             self.dy = min(max(self.dy, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
-            
+
         # jeśli czekasz, aż statek będzie mógł wystrzelić następny pocisk,
         # zmniejsz czas oczekiwania
         if self.missile_wait > 0:
             self.missile_wait -= 1
-            
+
         # wystrzel pocisk, jeśli klawisz spacji jest naciśnięty i skończył się
-        # czas oczekiwania    
+        # czas oczekiwania
         if games.keyboard.is_pressed(games.K_SPACE) and self.missile_wait == 0:
             new_missile = Missile(self.x, self.y, self.angle)
-            games.screen.add(new_missile)        
+            games.screen.add(new_missile)
             self.missile_wait = Ship.MISSILE_DELAY
 
     def die(self):
@@ -164,11 +219,11 @@ class Missile(Collider):
     def __init__(self, ship_x, ship_y, ship_angle):
         """ Inicjalizuj duszka pocisku. """
         Missile.sound.play()
-        
-        # zamień na radiany
-        angle = ship_angle * math.pi / 180  
 
-        # oblicz pozycję początkową pocisku  
+        # zamień na radiany
+        angle = ship_angle * math.pi / 180
+
+        # oblicz pozycję początkową pocisku
         buffer_x = Missile.BUFFER * math.sin(angle)
         buffer_y = Missile.BUFFER * -math.cos(angle)
         x = ship_x + buffer_x
@@ -187,8 +242,8 @@ class Missile(Collider):
     def update(self):
         """ Obsługuj ruch pocisku. """
         super(Missile, self).update()
-        
-        # zniszcz pocisk, jeśli wyczerpał się jego czas życia   
+
+        # zniszcz pocisk, jeśli wyczerpał się jego czas życia
         self.lifetime -= 1
         if self.lifetime == 0:
             self.destroy()
@@ -235,7 +290,7 @@ class Game(object):
         games.screen.add(self.score)
 
         # utwórz statek kosmiczny gracza
-        self.ship = Ship(game = self, 
+        self.ship = Ship(game = self,
                          x = games.screen.width/2,
                          y = games.screen.height/2)
         games.screen.add(self.ship)
@@ -259,11 +314,11 @@ class Game(object):
     def advance(self):
         """ Przejdź do następnego poziomu gry. """
         self.level += 1
-        
+
         # wielkość obszaru ochronnego wokół statku przy tworzeniu asteroid
         BUFFER = 150
-     
-        # utwórz nowe asteroidy 
+
+        # utwórz nowe asteroidy
         for i in range(self.level):
             # oblicz współrzędne x i y zapewniające minimum odległości od statku
             # określ minimalną odległość wzdłuż osi x oraz wzdłuż osi y
@@ -282,12 +337,21 @@ class Game(object):
             # jeśli to konieczne, przeskocz między krawędziami ekranu
             x %= games.screen.width
             y %= games.screen.height
-       
+
             # utwórz asteroidę
-            new_asteroid = Asteroid(game = self,
+            new_alien = Alien(game = self,
                                     x = x, y = y,
+                                    size = Alien.LARGE)
+            games.screen.add(new_alien)
+
+            new_asteroid = Asteroid(game=self,
+                                    x=x, y=y,
                                     size = Asteroid.LARGE)
             games.screen.add(new_asteroid)
+
+
+
+
 
         # wyświetl numer poziomu
         level_message = games.Message(value = "Poziom " + str(self.level),
@@ -302,7 +366,7 @@ class Game(object):
         # odtwórz dźwięk przejścia do nowego poziomu (nie dotyczy pierwszego poziomu)
         if self.level > 1:
             self.sound.play()
-            
+
     def end(self):
         """ Zakończ grę. """
         # pokazuj komunikat 'Koniec gry' przez 5 sekund
