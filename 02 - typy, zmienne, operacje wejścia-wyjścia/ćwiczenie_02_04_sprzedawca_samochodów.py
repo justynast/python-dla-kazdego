@@ -18,3 +18,5 @@ op_dos = 100
 cena_koncowa = cena_podstawowa + podatek + op_rej + prowizja + op_dos
 
 print("Faktyczne cena samochodu po doliczeniu dodatkowych opłat:", cena_koncowa, "złotych.")
+
+input("\n\nAby zakończyć naciśnij klawisz Enter.")
